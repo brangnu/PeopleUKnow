@@ -1,52 +1,44 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
 
 import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
+  TextInput,
   Text,
+  Image,
+  TouchableHighlight,
   View
 } from 'react-native';
 
-class puk extends Component {
-  render() {
+import {Router, routerReducer, Route, Container, Animations, Schema} from 'react-native-redux-router';
+import Login  from './login.android.js';
+import Home from './home.android.js';
+
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+
+let store = createStore(combineReducers({routerReducer}));
+
+class App extends Component {
+  render(){
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Shake or press menu button for dev menu
-        </Text>
+      <View style={{flex:1}}>
+        <View style={{position:'absolute',left:0,right:0,top:0,bottom:0,backgroundColor:'#F5FCFF'}}/>
+        <Router>
+          <Route name="login" initial={true} component={Login} title="Login"/>
+          <Route name="home"  component={Home} title="Home"/>
+        </Router>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
-
+class puk extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
+  }
+}
 AppRegistry.registerComponent('puk', () => puk);
