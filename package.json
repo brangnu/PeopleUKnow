@@ -8,6 +8,8 @@
   "dependencies": {
     "react": "15.1.0",
     "react-native": "0.28.0",
-    "react-native-material-kit": "^0.3.2"
+    "react-native-button": "^1.6.0",
+    "react-native-material-kit": "^0.3.2",
+    "react-native-router-flux": "^3.30.2"
   }
 }

@@ -4,6 +4,7 @@
  * @flow
  */
 
+
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -11,14 +12,27 @@ import {
   TextInput,
   Text,
   Image,
+  TouchableHighlight,
   View
 } from 'react-native';
+
+
+
 
 class puk extends Component {
 
   constructor(props) {
       super(props);
-      this.state = { data : [] };
+      this.state = { };
+  }
+
+
+  _onPressButton(username, password){
+    if (username == 'admin', password == 'secret'){
+      console.log("you are logged in")
+    }else {
+      console.log('wrong.please try again.')
+    }
   }
 
   render() {
@@ -30,17 +44,27 @@ class puk extends Component {
           Welcome to PeopleUKnow!
         </Text>
 
+
         <TextInput
+            autoCapitalize={'none'}
             style={styles.username}
-            onChangeText={(text) => this.setState({text})}
-            value={this.state.text}
+            onChangeText={(username) => this.setState({username})}
+            value = {this.state.username}
             placeholder={'Username'}/>
 
         <TextInput
+            autoCapitalize={'none'}
             style={styles.password}
-            onChangeText={(text) => this.setState({text})}
-            value={this.state.text}
+            onChangeText={(password) => this.setState({password})}
+            value={this.state.password}
             placeholder={'Password'}/>
+
+        <TouchableHighlight style={{ marginTop : 10}} onPress={() => this._onPressButton(this.state.username, this.state.password)}>
+              <Image
+                style={styles.button}
+                source={require('./img/login.png')}/>
+        </TouchableHighlight>
+
       </View>
     );
   }
