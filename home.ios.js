@@ -25,13 +25,41 @@ class Home extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Image style={styles.appicon} source={require('./img/appicon.png')} />
+      <View>
+        <View style={styles.container}>
+          <Image style={styles.profilePicture} source={require('./img/brang.png')} />
+          <Text>
+            {this.props.data}
+          </Text>
+        </View>
+        
 
-        <Text style={styles.welcome}>
-          Welcome to PeopleUKnow!
-        </Text>
+        <View style={styles.featureContainer}>
+          <View style={styles.icons}>
+              <TouchableHighlight onPress={() => Actions.feature1(this.props.data)}>
+                <Image source={require('./img/brang.png')} />
+              </TouchableHighlight>
+            <TouchableHighlight onPress={() => Actions.feature2(this.props.data)}>
+                <Image source={require('./img/brang.png')} />
+              </TouchableHighlight>
+            <TouchableHighlight onPress={() => Actions.feature3(this.props.data)}>
+                <Image source={require('./img/brang.png')} />
+              </TouchableHighlight>
+          </View>
+          
+          <View style={styles.icons}>
+              <TouchableHighlight onPress={() => Actions.feature4(this.props.data)}>
+                <Image source={require('./img/brang.png')} />
+              </TouchableHighlight>
+            <TouchableHighlight onPress={() => Actions.feature5(this.props.data)}>
+                <Image source={require('./img/brang.png')} />
+              </TouchableHighlight>
+            <TouchableHighlight onPress={() => Actions.feature6(this.props.data)}>
+                <Image source={require('./img/brang.png')} />
+              </TouchableHighlight>
+          </View>
 
+        </View>
       </View>
     );
   }
@@ -39,10 +67,8 @@ class Home extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    //justifyContent: 'center',
-    alignItems: 'center',
-    marginTop : 35,
+    alignItems:'center',
+    marginTop : 20,
     backgroundColor: '#F5FCFF',
   },
   welcome: {
@@ -51,11 +77,25 @@ const styles = StyleSheet.create({
     margin: 10,
     marginTop : 20
   },
-  appicon : {
+  profilePicture : {
     marginTop : 150,
-    width : 50,
-    height : 50
+    width : 100,
+    height : 100,
   },
+  icons: {
+    flex : 1,
+    flexDirection : 'row',
+    flexWrap : 'wrap',
+    justifyContent: 'space-between',
+    marginBottom : 20,
+    marginLeft : 15,
+    marginRight : 15
+  },
+
+  featureContainer : {
+    marginTop : 50
+  },
+
   instructions: {
     textAlign: 'center',
     color: '#333333',

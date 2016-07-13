@@ -12,58 +12,37 @@ import {
   Text,
   Image,
   TouchableHighlight,
-  View
+  View,
+  TouchableOpacity
 } from 'react-native';
 import {Actions} from 'react-native-redux-router';
 
-class Login extends Component {
+class Feature4 extends Component {
 
   constructor(props) {
       super(props);
-      this.state = { };
+      this.state = { username : ''};
   }
 
-
-  _onPressButton(username, password){
-    if (username == 'admin' && password == 'secret'){
-      console.log("you are logged inASD");
-      Actions.home(this.state.username);
-    }else {
-      console.log('wrong.please try again.')
-    }
+  backToHome(username){
+    this.state.username = username;
+    Actions.home(this.state.username);
   }
 
   render() {
+    let Actions = this.props.routes;
     return (
       <View style={styles.container}>
-        <Image style={styles.appicon} source={require('./img/appicon.png')} />
-
         <Text style={styles.welcome}>
-          Welcome to PeopleUKnow!
+          Welcome to Feature #4!
         </Text>
-
-
-        <TextInput
-            autoCapitalize={'none'}
-            style={styles.username}
-            onChangeText={(username) => this.setState({username})}
-            value = {this.state.username}
-            placeholder={'Username'}/>
-
-        <TextInput
-            autoCapitalize={'none'}
-            style={styles.password}
-            onChangeText={(password) => this.setState({password})}
-            value={this.state.password}
-            secureTextEntry={true}
-            placeholder={'Password'}/>
-
-        <TouchableHighlight style={{ marginTop : 10}} onPress={() => this._onPressButton(this.state.username, this.state.password)}>
-              <Image
-                style={styles.button}
-                source={require('./img/login.png')}/>
-        </TouchableHighlight>
-
+        <View>
+          <TouchableOpacity onPress={() => this.backToHome(this.props.data)} >
+            <Text style={styles.welcome}>
+              Back to home!
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -81,9 +60,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+    marginTop : 20
   },
   appicon : {
-    marginTop : 10,
+    marginTop : 150,
     width : 50,
     height : 50
   },
@@ -105,6 +85,7 @@ const styles = StyleSheet.create({
     justifyContent:'center'
   },
 
+
   password:{
     borderWidth : 2,
     height : 40,
@@ -118,4 +99,4 @@ const styles = StyleSheet.create({
     justifyContent:'center'
   }
 });
-module.exports = Login;
+module.exports = Feature4;
