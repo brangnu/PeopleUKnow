@@ -12,6 +12,7 @@ import {
   Text,
   Image,
   TouchableHighlight,
+  TouchableOpacity,
   View
 } from 'react-native';
 import {Actions} from 'react-native-redux-router';
@@ -23,6 +24,10 @@ class Home extends Component {
       this.state = { };
   }
 
+  _onPressButton(){
+    Actions.login();
+  }
+
   render() {
     return (
       <View>
@@ -31,6 +36,11 @@ class Home extends Component {
           <Text>
             {this.props.data}
           </Text>
+          <TouchableOpacity style={{ marginTop : 10, marginBottom : 10}}onPress={this._onPressButton}>
+                <Text>
+                  Logout
+                </Text>
+              </TouchableOpacity>
         </View>
         
 
@@ -93,7 +103,7 @@ const styles = StyleSheet.create({
   },
 
   featureContainer : {
-    marginTop : 50
+    marginTop : 40
   },
 
   instructions: {
