@@ -25,7 +25,7 @@ class Login extends Component {
 
 
   _onPressButton(username, password){
-    if (username == 'admin' && password == 'secret'){
+    if (username == 'student1' && password == 'secret'){
       console.log("you are logged inASD");
       Actions.home();
     }else {

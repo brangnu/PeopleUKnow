@@ -55,7 +55,7 @@ class Login extends Component {
             style={styles.password}
             onChangeText={(password) => this.setState({password})}
             value={this.state.password}
-            secureTextEntry={true}
+            
             placeholder={'Password'}/>
 
         <TouchableHighlight style={{ marginTop : 10}} onPress={() => this._onPressButton(this.state.username, this.state.password)}>
