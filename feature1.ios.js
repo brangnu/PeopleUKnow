@@ -18,7 +18,7 @@ import {
 } from 'react-native';
 import {Actions} from 'react-native-redux-router';
 
-list = ['John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jillian']
+list = ['John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jillian', 'Brang Nu', 'Håvard', 'Marianne']
 
 class Feature1 extends Component {
 
@@ -33,12 +33,12 @@ class Feature1 extends Component {
 
   }
 
-  backToHome(username){
-    this.state.username = username;
-    Actions.home(this.state.username);
+  _createPair(){
+    Actions.createpair();
   }
 
-  removeThis(rowData){
+  _removeThis(rowData){
+    console.log(rowData)
     newArray = this.state.db.slice()
     newArray.splice(newArray.indexOf(rowData),1)
     this.setState({
@@ -47,81 +47,74 @@ class Feature1 extends Component {
     })
   }
 
+
+  _renderRow(rowData){
+    return(
+      <View style={styles.container}>
+        <Text style={styles.leftContainer}>
+            {rowData}
+        </Text>
+        <TouchableHighlight onPress={() => this._removeThis(rowData)}>
+          <Text style={styles.rightContainer}>Delete</Text>
+        </TouchableHighlight>
+      </View>
+    )
+  }
+
   render() {
     let Actions = this.props.routes;
     return (
-      <View style={styles.listview}>
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={(rowData) => <Text style={styles.listviewcontent} 
-        onPress={() => this.removeThis(rowData)}>{rowData}</Text>}/>
+      <View style={styles.listViewContainer}>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={(rowData) => this._renderRow(rowData)}/>
+          <Text style={styles.lagpar} onPress={() => this._createPair()}>
+            Lag Par
+          </Text>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    //justifyContent: 'center',
-    alignItems: 'center',
-    marginTop : 35,
-    backgroundColor: '#F5FCFF',
+  listViewContainer : {
+    marginTop: 50,
+    margin: 30,
+    height : 500,
+    marginBottom : 50
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    marginTop : 20
-  },
-  appicon : {
-    marginTop : 150,
-    width : 50,
+  lagpar : {
+    color : 'red', 
+    paddingBottom : 50, 
+    paddingTop : 20, 
+    fontSize : 30, 
+    textAlign : 'center', 
     height : 50
   },
-  listview : {
-    marginTop : 100,
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    
+  },
+  leftContainer : {
     flex : 1,
-    height : 500
-  },
-  listviewcontent : {
-    marginBottom : 30,
-    marginLeft: 40,
-    marginRight: 40,
-    color : 'white',
-    backgroundColor: 'green',
     fontSize : 20,
+    marginBottom : 20,
+    paddingBottom : 10,
+    paddingTop : 10,
+    color: 'white',
+    backgroundColor: 'green',
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-  username:{
-    borderWidth : 2,
-    height : 40,
-    width : 200,
-    marginLeft : 60,
-    marginRight : 50,
-    paddingLeft : 10,
-    marginTop : 100,
-    flexDirection:'row',
-    alignItems:'center',
-    justifyContent:'center'
-  },
-
-
-  password:{
-    borderWidth : 2,
-    height : 40,
-    width : 200,
-    marginLeft : 60,
-    marginRight : 50,
-    paddingLeft : 10,
-    marginTop : 10,
-    flexDirection:'row',
-    alignItems:'center',
-    justifyContent:'center'
+  rightContainer : {
+    flex : 1,
+    marginBottom : 20,
+    fontSize : 20,
+    paddingBottom : 10,
+    paddingTop : 10,
+    color: 'white',
+    backgroundColor: 'green',
   }
 });
 module.exports = Feature1;
