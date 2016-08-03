@@ -39,9 +39,9 @@ class CreatePair extends Component {
       this.settings[0].avoid.first = person
     }else if (type === 'avoid' && num === 2){
       firebase.auth().signInWithEmailAndPassword('brangnu@gmail.com', 'adminuser')
-      firebase.database().ref('Users/' + 'Test13/').set({
+      firebase.database().ref('Users/' + 'Test14/').set({
         name: person,
-        email: 'pikk@gmail.com'
+        email: 'kjøleksap@gmail.com'
       })
       this.settings[0].avoid.second = person
     }
