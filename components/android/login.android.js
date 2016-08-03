@@ -6,7 +6,6 @@
 
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   TextInput,
   Text,
@@ -14,6 +13,7 @@ import {
   TouchableHighlight,
   View
 } from 'react-native';
+
 import {Actions} from 'react-native-redux-router';
 
 class Login extends Component {
@@ -36,7 +36,7 @@ class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image style={styles.appicon} source={require('./img/appicon.png')} />
+        <Image style={styles.appicon} source={require('../../img/appicon.png')} />
 
         <Text style={styles.welcome}>
           Welcome to PeopleUKnow!
@@ -60,7 +60,7 @@ class Login extends Component {
         <TouchableHighlight style={{ marginTop : 10}} onPress={() => this._onPressButton(this.state.username, this.state.password)}>
               <Image
                 style={styles.button}
-                source={require('./img/login.png')}/>
+                source={require('../../img/login.png')}/>
         </TouchableHighlight>
 
       </View>
