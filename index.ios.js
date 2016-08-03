@@ -13,13 +13,13 @@ import {
 import {Router, routerReducer, Route, Container, Animations, Schema} from 'react-native-redux-router';
 import Login  from './login.ios.js';
 import Home from './home.ios.js';
-import Feature1 from './feature1.ios.js'
-import Feature2 from './feature2.ios.js'
-import Feature3 from './feature3.ios.js'
-import Feature4 from './feature4.ios.js'
-import Feature5 from './feature5.ios.js'
-import Feature6 from './feature6.ios.js'
-import CreatePair from './createpair.ios.js'
+import Feature1 from './components/ios/feature1.ios.js'
+import Feature2 from './components/ios/feature2.ios.js'
+import Feature3 from './components/ios/feature3.ios.js'
+import Feature4 from './components/ios/feature4.ios.js'
+import Feature5 from './components/ios/feature5.ios.js'
+import Feature6 from './components/ios/feature6.ios.js'
+import CreatePair from './components/ios/createpair.ios.js'
 
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
