@@ -17,7 +17,8 @@ import {DropDown,
   OptionList,
 } from 'react-native-selectme';
 
-import firebase from '../../utils/firebase.js'
+import firebase from '../../utils/firebase.js';
+import fun from '../../utils/helpers.js'
 
 class CreatePair extends Component {
   constructor(props) {
@@ -38,6 +39,7 @@ class CreatePair extends Component {
     if (type === 'avoid' && num === 1){
       this.settings[0].avoid.first = person
     }else if (type === 'avoid' && num === 2){
+      fun.hei();
       firebase.auth().signInWithEmailAndPassword('brangnu@gmail.com', 'adminuser')
       firebase.database().ref('Users/' + 'Test14/').set({
         name: person,

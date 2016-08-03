@@ -9,5 +9,6 @@ const config = {
     storageBucket: "peopleuknow-e1677.appspot.com",
 };
 
+
 const firebaseApp = firebase.initializeApp(config);
 module.exports = firebaseApp;
