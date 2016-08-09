@@ -5,8 +5,11 @@ import {
   View,
   Image,
   ListView,
-  TouchableHighlight
+  TouchableHighlight,
+  TextInput
 } from 'react-native';
+
+import firebase from '../../utils/firebase.js';
 
 console.log("heihei");
 
@@ -76,16 +79,42 @@ class Scrapbook extends Component{
     super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows(list2)
+      dataSource: ds.cloneWithRows(list2),
+      inputText: "placeholder"
     };
   }
 
-  _renderRow(rowData){
+  _renderRow(rowData, sectionID, rowID){
     return(
       <View>
         <Text>-----------------------------------------------------------</Text>
         <Text>{rowData.header}</Text>
         <Text>{rowData.text}</Text>
+        <Text>{sectionID}</Text>
+        <Text>{rowID}</Text>
+      </View>
+    )
+  }
+
+  _postToScarpbook(){
+    console.log(this.state.inputText);
+  }
+
+  _renderHeader(){
+    return(
+      <View>
+        <Text>
+          your post here HEI ALF:
+        </Text>
+        <TextInput
+          onChangeText={(inputText) => this.setState({inputText})}
+          value={this.state.inputText}
+        />
+      <TouchableHighlight onPress={this._postToScarpbook.bind(this)}>
+          <View style={{backgroundColor:"black"}}>
+            <Text style={{color:"white"}}>HEI</Text>
+          </View>
+        </TouchableHighlight>
       </View>
     )
   }
@@ -94,7 +123,8 @@ class Scrapbook extends Component{
     return(
       <ListView
         dataSource={this.state.dataSource}
-        renderRow={(rowData) => this._renderRow(rowData)}
+        renderRow={(rowData, sectionID, rowID) => this._renderRow(rowData, sectionID, rowID)}
+        renderHeader={() => this._renderHeader()}
         />
     );
   }
@@ -104,15 +134,20 @@ class ScrapbookView extends Component{
   constructor(props){
     super(props);
   }
+
+  _testButton(){
+    console.log("penis");
+  }
+
   render(){
     return(
       <View style={{flex:1}}>
         <Scrapbook />
-        <View style={{position: 'absolute', left: 0, right: 0, bottom: 0, backgroundColor:"black"}}>
-          <TouchableHighlight>
-            <Text style={{color:"white"}}>HEI</Text>
-          </TouchableHighlight>
-        </View>
+        <TouchableHighlight onPress={this._testButton}>
+          <View style={{backgroundColor:"black"}}>
+            <Text style={{color:"white"}}>Test KNAPPEN</Text>
+          </View>
+        </TouchableHighlight>
       </View>
     )
   }
