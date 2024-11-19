@@ -1,2 +1,2 @@
-# ReactIntro
+# PeopleUKnow
 PeopleUKnow
